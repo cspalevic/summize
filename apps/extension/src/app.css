@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-blue: rgb(1, 41, 220);
+    --color-primary-teal: rgb(13, 146, 150);
+  }
+}
+
+* {
+  font-family: "Helvetica Neue";
+  font-size: 18px;
+}

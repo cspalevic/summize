@@ -1,0 +1,3 @@
+# Docs
+
+A place where I'm putting all my notes. Just learning as I go...

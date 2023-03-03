@@ -1,0 +1,34 @@
+{
+  "name": "browser-chat",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.1",
+    "eslint": "^8.34.0",
+    "eslint-config-custom": "workspace:^0.0.0",
+    "prettier": "^2.8.4",
+    "prettier-config-custom": "workspace:^0.0.0",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@7.23.0",
+  "prettier": "prettier-config-custom",
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint-config-custom"
+    ]
+  }
+}
