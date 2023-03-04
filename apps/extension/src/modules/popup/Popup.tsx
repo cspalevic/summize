@@ -1,74 +1,35 @@
-import React, { useState } from "react";
-import { Button } from "@/components/Button";
-import { Loading } from "@/components/Loading";
-import { getCurrentUrl, getStorage } from "@/lib/browser";
-import { getCompletions } from "@/lib/openai";
-import { STORAGE_KEYS } from "@/lib/constants";
+import React, { useEffect, useState } from "react";
+import { Gear } from "@/components/icons/Gear";
+import { openSettings } from "@/lib/browser";
+import { App } from "./App";
+import { getApiKey } from "./utils";
+import { Friction } from "./Friction";
+
+type PopupState = "friction" | "ready";
 
 export const Popup = () => {
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [result, setResult] = useState<string | null>(null);
-  const [loadingResults, setLoadingResults] = useState<boolean>(false);
+  const [popupState, setPopupState] = useState<PopupState | null>(null);
 
-  const handleMessage = (text: string) => {
-    setResult((currentResult) => (currentResult ?? "").concat(text));
-  };
-
-  const handleEnd = () => {
-    setLoadingResults(false);
-  };
-
-  const reset = () => {
-    setResult(null);
-  };
-
-  const getApiKey = async (): Promise<string> => {
-    const result = await getStorage(STORAGE_KEYS.OPENAI_KEY);
-    return result[STORAGE_KEYS.OPENAI_KEY] ?? "";
-  };
-
-  const summize = async () => {
-    try {
-      const [apiKey, url] = await Promise.all([getApiKey(), getCurrentUrl()]);
-      setLoadingResults(true);
-      getCompletions(apiKey, url, {
-        onMessage: handleMessage,
-        onEnd: handleEnd,
-      });
-    } catch (error: unknown) {
-      const message = (error as Error).message;
-      setErrorMessage(message);
-    }
-  };
-
-  if (!result) {
-    if (loadingResults)
-      return (
-        <div className="h-4/5 flex items-center justify-items-center">
-          <Loading />
-        </div>
-      );
-
-    return (
-      <div className="h-full flex items-center justify-center">
-        <div className="flex flex-col">
-          <Button text="Summmize!" onClick={summize} />
-          {errorMessage && (
-            <span className="text-rose-700">{errorMessage}</span>
-          )}
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const determineState = async () => {
+      const apiKey = await getApiKey();
+      setPopupState(!apiKey ? "friction" : "ready");
+    };
+    determineState();
+  }, []);
 
   return (
-    <div className="h-full overflow-y-auto flex flex-col-reverse px-4 pb-6">
-      {!loadingResults && (
-        <div className="flex justify-center mt-2">
-          <Button text="Reset" onClick={reset} />
-        </div>
-      )}
-      <p className="text-slate-200 text-left">{result}</p>
+    <div className="w-[300px] h-[350px] bg-slate-800 flex flex-col">
+      <div className="p-2 flex justify-between items-center">
+        <img src="/images/icon-32x32.png" width="32" height="32"></img>
+        <button onClick={() => openSettings()} aria-label="Open Settings">
+          <Gear />
+        </button>
+      </div>
+      <div className="flex-1 overflow-y-auto">
+        {popupState === "friction" && <Friction />}
+        {popupState === "ready" && <App />}
+      </div>
     </div>
   );
 };

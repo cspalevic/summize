@@ -1,4 +1,3 @@
-import { Link } from "@/components/Link";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Settings } from "./Settings";
@@ -14,18 +13,27 @@ root.render(
           <h3 className="text-slate-200 text-xl hidden sm:block">Summize</h3>
         </div>
         <div className="flex items-center gap-2">
-          <Link
+          <a
+            className="text-slate-200 text-base transition duration-75 border-b-[1px] border-blue-400 hover:border-b-2"
             href="https://github.com/cspalevic/summize"
-            text="Source code"
-          />
-          <Link
+            target="_blank"
+            rel="noreferrer"
+          >
+            Source code
+          </a>
+
+          <a
+            className="text-slate-200 text-base transition duration-75 border-b-[1px] border-blue-400 hover:border-b-2"
             href="https://github.com/cspalevic/summize/issues"
-            text="Report an issue"
-          />
+            target="_blank"
+            rel="noreferrer"
+          >
+            Report an issue
+          </a>
         </div>
       </div>
     </div>
-    <main className="flex flex-1 justify-center">
+    <main className="flex-1 flex justify-center">
       <Settings />
     </main>
   </div>

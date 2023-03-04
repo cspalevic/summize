@@ -24,6 +24,7 @@ type CompletionOptions = {
   length?: Length;
   onMessage: (text: string) => void;
   onEnd: () => void;
+  onError: () => void;
 };
 
 /**
@@ -35,7 +36,7 @@ type CompletionOptions = {
 export const getCompletions = (
   apiKey: string,
   url: string,
-  { onMessage, onEnd, length = 100 }: CompletionOptions
+  { onMessage, onEnd, onError, length = 100 }: CompletionOptions
 ) => {
   const source = new SSE(`${BASE_URL}/completions`, {
     headers: {
@@ -51,7 +52,12 @@ export const getCompletions = (
     }),
   });
 
-  source.addEventListener("message", (event: never) => {
+  source.addEventListener("error", () => {
+    onError();
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  source.addEventListener("message", (event: any) => {
     const { data } = event;
     if (data === STOP_TOKEN) {
       onEnd();

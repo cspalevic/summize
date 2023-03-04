@@ -1,16 +1,11 @@
 import React from "react";
-
-export type GearProps = {
-  height?: number;
-  width?: number;
-  color?: string;
-};
+import { IconProps } from ".";
 
 export const Gear = ({
   height = 24,
   width = 24,
   color = "#fff",
-}: GearProps) => (
+}: IconProps) => (
   <svg height={height} width={width} fill={color} viewBox="0 0 512 512">
     <g>
       <g>
