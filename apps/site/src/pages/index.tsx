@@ -12,14 +12,14 @@ const Home = () => (
     <Head>
       <title>Summize</title>
     </Head>
-    <div className="flex flex-col text-center">
+    <div className="flex flex-col text-center pb-6">
       <h1 className="text-2xl font-bold text-slate-200">Summize</h1>
       <p className="text-sm text-slate-300">
         The ultimate browser extension companion
       </p>
     </div>
     <Image
-      className="rounded-lg"
+      className="rounded-lg shadow-[0_0_20px_2px_#ccc]"
       src="/demo.gif"
       alt="Summize demo"
       width="800"
