@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-blue: rgb(1, 41, 220);
+    --color-primary-teal: rgb(13, 146, 150);
+  }
+}
+
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+}
+
+#__next {
+  height: 100%;
+  width: 100%;
+}
