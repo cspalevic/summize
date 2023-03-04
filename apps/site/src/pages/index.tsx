@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import { Open_Sans } from "next/font/google";
 import { Card } from "@/components/Card";
 
@@ -8,6 +9,9 @@ const Home = () => (
   <main
     className={`flex flex-col items-center h-full gap-4 ${notoSans.className}`}
   >
+    <Head>
+      <title>Summize</title>
+    </Head>
     <div className="flex flex-col text-center">
       <h1 className="text-2xl font-bold text-slate-200">Summize</h1>
       <p className="text-sm text-slate-300">
