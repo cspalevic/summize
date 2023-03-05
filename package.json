@@ -1,5 +1,5 @@
 {
-  "name": "browser-chat",
+  "name": "summize",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -10,7 +10,8 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,html,json}\""
   },
   "devDependencies": {
     "@types/node": "^18.14.1",

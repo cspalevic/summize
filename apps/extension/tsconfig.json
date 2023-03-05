@@ -1,14 +1,14 @@
 {
-    "include": ["src/", "types.d.ts"],
-    "extends": "@tsconfig/recommended",
-    "compilerOptions": {
-        "noEmit": true,
-        "jsx": "react",
-        "esModuleInterop": true,
-        "types": ["chrome"],
-        "baseUrl": "./src",
-        "paths": {
-            "@/*": ["*"]
-        }
+  "include": ["src/", "types.d.ts"],
+  "extends": "@tsconfig/recommended",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "types": ["chrome"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
     }
+  }
 }

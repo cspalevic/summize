@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Head from "next/head";
-import { Open_Sans } from "next/font/google";
 import { Card } from "@/components/Card";
+import { Open_Sans } from "next/font/google";
+import Head from "next/head";
+import Image from "next/image";
 
 const notoSans = Open_Sans({ subsets: ["latin"] });
 
@@ -36,4 +36,5 @@ const Home = () => (
     </div>
   </main>
 );
+
 export default Home;
