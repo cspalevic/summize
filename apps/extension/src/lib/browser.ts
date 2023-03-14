@@ -1,5 +1,5 @@
-import { REQUIRED_PERMISSIONS } from "./constants";
-import { GeneralError, InsufficientPermissionsError } from "./errors";
+import { POPUP_REQUIRED_PERMISSIONS } from "./constants";
+import { GeneralError, InsufficientPopupPermissionsError } from "./errors";
 
 /**
  * Requests access to the specified permissions
@@ -36,16 +36,15 @@ export const containsPermissions = (
  */
 export const getCurrentUrl = async (): Promise<string> => {
   try {
-    const hasPermission = await containsPermissions(REQUIRED_PERMISSIONS);
+    const hasPermission = await containsPermissions(POPUP_REQUIRED_PERMISSIONS);
     if (!hasPermission) {
-      const granted = await requestPermissions(REQUIRED_PERMISSIONS);
+      const granted = await requestPermissions(POPUP_REQUIRED_PERMISSIONS);
       if (!granted) {
-        throw new InsufficientPermissionsError();
+        throw new InsufficientPopupPermissionsError();
       }
     }
 
     const tabs = await chrome.tabs.query({
-      active: true,
       currentWindow: true,
     });
     if (!tabs.length) {
@@ -53,7 +52,13 @@ export const getCurrentUrl = async (): Promise<string> => {
       throw new GeneralError();
     }
 
-    const url = tabs[0].url;
+    const activeTab = tabs.find((_tab) => _tab.active);
+    if (!activeTab) {
+      console.error("No active tab found.");
+      throw new GeneralError();
+    }
+
+    const url = activeTab.url;
     if (!url) {
       console.error("No url found on the current tab", tabs[0]);
       throw new GeneralError();
