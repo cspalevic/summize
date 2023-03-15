@@ -1,5 +1,5 @@
-import { Note } from "@/components/icons/Note";
 import { Input } from "@/components/Input";
+import { Note } from "@/components/icons/Note";
 import { getStorage, setStorage } from "@/lib/browser";
 import { STORAGE_KEYS } from "@/lib/constants";
 import React, { useEffect, useState } from "react";

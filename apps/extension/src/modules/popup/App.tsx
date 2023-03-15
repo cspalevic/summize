@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import { Button } from "@/components/Button";
 import { Loading } from "@/components/Loading";
 import { getCurrentUrl } from "@/lib/browser";
 import { getCompletions } from "@/lib/openai";
+import React, { useState } from "react";
 import { getApiKey } from "./utils";
 
 export const App = () => {

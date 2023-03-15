@@ -1,5 +1,5 @@
-import React from "react";
 import { openSettings } from "@/lib/browser";
+import React from "react";
 
 export const Friction = () => (
   <div className="h-full flex items-center justify-center">

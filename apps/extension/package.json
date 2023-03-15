@@ -6,7 +6,8 @@
     "build": "tsc && pnpm build:js && pnpm build:css",
     "build:js": "tsx scripts/build",
     "build:css": "tailwindcss -i ./src/app.css -o ./public/assets/app.css --minify",
-    "lint": "eslint --fix \"**/*.{ts,tsx}*\""
+    "lint": "eslint --fix \"**/*.{ts,tsx}*\"",
+    "typecheck": "tsc"
   },
   "license": "ISC",
   "dependencies": {

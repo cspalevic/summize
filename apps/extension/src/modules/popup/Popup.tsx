@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { Gear } from "@/components/icons/Gear";
 import { openSettings } from "@/lib/browser";
+import React, { useEffect, useState } from "react";
 import { App } from "./App";
-import { getApiKey } from "./utils";
 import { Friction } from "./Friction";
+import { getApiKey } from "./utils";
 
 type PopupState = "friction" | "ready";
 
